@@ -1,7 +1,12 @@
 import React from 'react';
 import classes from './TodoForm.module.scss';
+import { useDispatch } from 'react-redux';
+import { ACTIONS } from '../../../store/actions';
+import { v4 as uuidv4 } from 'uuid';
 
-const TodoForm = ({ title, setTitle, description, setDescription, todos, setTodos, setStatus }) => {
+const TodoForm = ({ title, setTitle, description, setDescription, todos }) => {
+  const dispatch = useDispatch();
+
   const handlerInput = (event) => {
     setDescription(event.target.value);
   };
@@ -13,17 +18,14 @@ const TodoForm = ({ title, setTitle, description, setDescription, todos, setTodo
   const handlerSubmitTodo = (event) => {
     event.preventDefault();
     const currentDate = Date.now();
-    setTodos([
-      ...todos,
-      {
-        id: Math.random() * 100000,
-        title: title,
-        description: description,
-        status: 'open',
-        creationDate: currentDate,
-        updateDate: currentDate,
-      },
-    ]);
+    dispatch(ACTIONS.addTodo({
+      id: uuidv4(),
+      title: title,
+      description: description,
+      status: 'open',
+      creationDate: currentDate,
+      updateDate: currentDate,
+    }));
     setDescription('');
     setTitle('');
   };

@@ -14,7 +14,7 @@ function reducer(state = initialState, action) {
 
     case ACTION_TYPES.openTodo: {
       const todos = state.todos.map((item) => {
-        if (item.id === id) {
+        if (item.id === action.todoId) {
           return {
             ...item,
             status: 'open-todo',
@@ -28,7 +28,7 @@ function reducer(state = initialState, action) {
 
     case ACTION_TYPES.completeTodo: {
       const todos = state.todos.map((item) => {
-        if (item.id === id) {
+        if (item.id === action.todoId) {
           return {
             ...item,
             status: 'completed',
@@ -42,7 +42,7 @@ function reducer(state = initialState, action) {
 
     case ACTION_TYPES.inProgressTodo: {
       const todos = state.todos.map((item) => {
-        if (item.id === id) {
+        if (item.id === action.todoId) {
           return {
             ...item,
             status: 'in-progress',
@@ -73,7 +73,7 @@ function reducer(state = initialState, action) {
     }
 
     case ACTION_TYPES.deleteTodo: {
-      const todos = state.todos.filter((element) => element.id !== id);
+      const todos = state.todos.filter((element) => element.id !== action.todoId);
 
       return { ...state, todos };
     }
