@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.scss';
 import TodoForm from './components/todo/todo-form/TodoForm';
 import SortTodo from './components/todo/sort-todo/SortTodo';
@@ -9,11 +9,6 @@ import { selectTodos } from './store/selectors';
 
 function App() {
   const todos = useSelector(selectTodos);
-
-  const [status] = useState('all');
-  const [sortOption] = useState('creationDate');
-  const [displayedTodos, setDisplayedTodos] = useState([]);
-
   const dispatch = useDispatch();
 
   const createTodo = (todo) => {
@@ -36,28 +31,6 @@ function App() {
     dispatch(ACTIONS.editTodo(todoId, { description }))
   };
 
-  useEffect(() => {
-    onSortAndFilterChange();
-  }, [todos, status, sortOption]);
-
-  const sortTodos = (todos) => {
-    return [...todos].sort((todo1, todo2) => {
-      return todo2[sortOption] - todo1[sortOption];
-    });
-  };
-
-  const onSortAndFilterChange = () => {
-    if (status === 'all') {
-      const sortedTodos = sortTodos(todos);
-      setDisplayedTodos(sortedTodos);
-      return;
-    }
-
-    const filteredTodos = todos.filter((todo) => todo.status === status);
-    const sortedTodos = sortTodos(filteredTodos);
-    setDisplayedTodos(sortedTodos);
-  };
-
   return (
     <div className="App">
       <TodoForm createTodoCallback={createTodo}/>
@@ -71,7 +44,7 @@ function App() {
       }
 
       <TodoList
-        displayedTodos={displayedTodos}
+        todos={todos}
         titleEditing={handleTitleEditing.bind(this)}
         descriptionEditing={handleDescriptionEditing.bind(this)}
       />

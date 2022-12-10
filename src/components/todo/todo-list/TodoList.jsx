@@ -4,7 +4,7 @@ import classes from './TodoList.module.scss';
 import { useDispatch } from 'react-redux';
 import { ACTIONS } from '../../../store/actions';
 
-const TodoList = ({ displayedTodos, titleEditing, descriptionEditing }) => {
+const TodoList = ({ todos, titleEditing, descriptionEditing }) => {
   const dispatch = useDispatch();
 
   const handlerDeleteTodo = (id) => {
@@ -26,7 +26,7 @@ const TodoList = ({ displayedTodos, titleEditing, descriptionEditing }) => {
   return (
     <ul className={ classes.todo__list }>
       {
-        displayedTodos.map((todo) => (
+        todos.map((todo) => (
           <Todo
             key={ todo.id }
             todo={ todo }
