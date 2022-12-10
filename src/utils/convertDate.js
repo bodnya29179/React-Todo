@@ -1,3 +1,3 @@
 export function convertDate(date) {
-    return (new Date(date)).toLocaleString();
+  return (new Date(date)).toLocaleString();
 }
