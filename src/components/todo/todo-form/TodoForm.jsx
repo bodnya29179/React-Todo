@@ -5,13 +5,9 @@ const TodoForm = ({ createTodoCallback }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handlerInput = (event) => {
-    setDescription(event.target.value);
-  };
+  const handlerInput = (event) => setDescription(event.target.value);
 
-  const handleTitle = (event) => {
-    setTitle(event.target.value);
-  };
+  const handleTitle = (event) => setTitle(event.target.value);
 
   const handlerSubmitTodo = (event) => {
     event.preventDefault();

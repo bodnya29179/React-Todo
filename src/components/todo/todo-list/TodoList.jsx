@@ -7,21 +7,10 @@ import { ACTIONS } from '../../../store/actions';
 const TodoList = ({ todos, titleEditing, descriptionEditing }) => {
   const dispatch = useDispatch();
 
-  const handlerDeleteTodo = (id) => {
-    dispatch(ACTIONS.deleteTodo(id));
-  };
-
-  const handlerCompleteTodo = (id) => {
-    dispatch(ACTIONS.completeTodo(id));
-  };
-
-  const handleInProgressTodo = (id) => {
-    dispatch(ACTIONS.inProgressTodo(id));
-  };
-
-  const handleOpenTodoTodo = (id) => {
-    dispatch(ACTIONS.openTodo(id));
-  };
+  const handlerDeleteTodo = (id) => dispatch(ACTIONS.deleteTodo(id));
+  const handlerCompleteTodo = (id) => dispatch(ACTIONS.completeTodo(id));
+  const handleInProgressTodo = (id) => dispatch(ACTIONS.inProgressTodo(id));
+  const handleOpenTodoTodo = (id) => dispatch(ACTIONS.openTodo(id));
 
   return (
     <ul className={ classes.todo__list }>

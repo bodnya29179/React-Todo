@@ -11,25 +11,11 @@ function App() {
   const todos = useSelector(selectTodos);
   const dispatch = useDispatch();
 
-  const createTodo = (todo) => {
-    dispatch(ACTIONS.addTodo(todo));
-  }
-
-  const handlerFiltering = (event) => {
-    dispatch(ACTIONS.changeStatus(event.target.value));
-  };
-
-  const handleSorting = (event) => {
-    dispatch(ACTIONS.changeSortOption(event.target.value));
-  };
-
-  const handleTitleEditing = (todoId, title) => {
-    dispatch(ACTIONS.editTodo(todoId, { title }))
-  };
-
-  const handleDescriptionEditing = (todoId, description) => {
-    dispatch(ACTIONS.editTodo(todoId, { description }))
-  };
+  const createTodo = (todo) => dispatch(ACTIONS.addTodo(todo));
+  const handlerFiltering = (event) => dispatch(ACTIONS.changeStatus(event.target.value));
+  const handleSorting = (event) => dispatch(ACTIONS.changeSortOption(event.target.value));
+  const handleTitleEditing = (todoId, title) => dispatch(ACTIONS.editTodo(todoId, { title }));
+  const handleDescriptionEditing = (todoId, description) => dispatch(ACTIONS.editTodo(todoId, { description }));
 
   return (
     <div className="App">
