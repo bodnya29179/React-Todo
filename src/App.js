@@ -5,9 +5,10 @@ import SortTodo from './components/todo/sort-todo/SortTodo';
 import TodoList from './components/todo/todo-list/TodoList';
 import { useDispatch, useSelector } from 'react-redux';
 import { ACTIONS } from './store/actions';
+import { selectTodos } from './store/selectors';
 
 function App() {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector(selectTodos);
 
   const [status, setStatus] = useState('all');
   const [sortOption, setSortOption] = useState('creationDate');
