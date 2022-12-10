@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import classes from './TodoForm.module.scss';
-import { useDispatch } from 'react-redux';
-import { ACTIONS } from '../../../store/actions';
 
-const TodoForm = () => {
+const TodoForm = ({ createTodoCallback }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
-  const dispatch = useDispatch();
 
   const handlerInput = (event) => {
     setDescription(event.target.value);
@@ -19,7 +15,7 @@ const TodoForm = () => {
 
   const handlerSubmitTodo = (event) => {
     event.preventDefault();
-    dispatch(ACTIONS.addTodo({ title, description }));
+    createTodoCallback({ title, description })
     setDescription('');
     setTitle('');
   };

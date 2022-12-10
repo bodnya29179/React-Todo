@@ -3,15 +3,21 @@ import './App.scss';
 import TodoForm from './components/todo/todo-form/TodoForm';
 import SortTodo from './components/todo/sort-todo/SortTodo';
 import TodoList from './components/todo/todo-list/TodoList';
+import { useDispatch, useSelector } from 'react-redux';
+import { ACTIONS } from './store/actions';
 
 function App() {
-  const [creationDate, setCreationDate] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [todos, setTodos] = useState([]);
+  const todos = useSelector((state) => state.todos);
+
   const [status, setStatus] = useState('all');
   const [sortOption, setSortOption] = useState('creationDate');
   const [displayedTodos, setDisplayedTodos] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const createTodo = (todo) => {
+    dispatch(ACTIONS.addTodo(todo));
+  }
 
   const handlerFiltering = (event) => {
     setStatus(event.target.value);
@@ -21,36 +27,12 @@ function App() {
     setSortOption(event.target.value);
   };
 
-  const handleTitleEditing = (todoId, newValue) => {
-    const result = todos.map((todo) => {
-      if (todo.id === todoId) {
-        return {
-          ...todo,
-          title: newValue,
-          updateDate: Date.now(),
-        };
-      } else {
-        return todo;
-      }
-    });
-
-    setTodos(result);
+  const handleTitleEditing = (todoId, title) => {
+    dispatch(ACTIONS.editTodo(todoId, { title }))
   };
 
-  const handleDescriptionEditing = (todoId, newValue) => {
-    const result = todos.map((todo) => {
-      if (todo.id === todoId) {
-        return {
-          ...todo,
-          description: newValue,
-          updateDate: Date.now(),
-        };
-      } else {
-        return todo;
-      }
-    });
-
-    setTodos(result);
+  const handleDescriptionEditing = (todoId, description) => {
+    dispatch(ACTIONS.editTodo(todoId, { description }))
   };
 
   useEffect(() => {
@@ -77,17 +59,8 @@ function App() {
 
   return (
     <div className="App">
-      <TodoForm
-        creationDate={creationDate}
-        setCreationDate={setCreationDate}
-        title={title}
-        setTitle={setTitle}
-        todos={todos}
-        setTodos={setTodos}
-        description={description}
-        setDescription={setDescription}
-        setStatus={setStatus}
-      />
+      <TodoForm createTodoCallback={createTodo}/>
+
       {
         !!todos.length
         && <SortTodo
@@ -95,9 +68,8 @@ function App() {
           sortTodos={handleSorting.bind(this)}
         />
       }
+
       <TodoList
-        todos={todos}
-        setTodos={setTodos}
         displayedTodos={displayedTodos}
         titleEditing={handleTitleEditing.bind(this)}
         descriptionEditing={handleDescriptionEditing.bind(this)}

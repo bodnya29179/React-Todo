@@ -1,52 +1,26 @@
 import React from 'react';
 import Todo from '../todo/Todo';
 import classes from './TodoList.module.scss';
+import { useDispatch } from 'react-redux';
+import { ACTIONS } from '../../../store/actions';
 
-const TodoList = ({ todos, setTodos, displayedTodos, titleEditing, descriptionEditing }) => {
+const TodoList = ({ displayedTodos, titleEditing, descriptionEditing }) => {
+  const dispatch = useDispatch();
+
   const handlerDeleteTodo = (id) => {
-    setTodos(todos.filter((element) => element.id !== id));
+    dispatch(ACTIONS.deleteTodo(id));
   };
 
   const handlerCompleteTodo = (id) => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 'completed',
-          };
-        }
-        return item;
-      }),
-    );
+    dispatch(ACTIONS.completeTodo(id));
   };
 
   const handleInProgressTodo = (id) => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 'in-progress',
-          };
-        }
-        return item;
-      }),
-    );
+    dispatch(ACTIONS.inProgressTodo(id));
   };
 
   const handleOpenTodoTodo = (id) => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 'open-todo',
-          };
-        }
-        return item;
-      }),
-    );
+    dispatch(ACTIONS.openTodo(id));
   };
 
   return (
@@ -66,7 +40,6 @@ const TodoList = ({ todos, setTodos, displayedTodos, titleEditing, descriptionEd
         ))
       }
     </ul>
-
   );
 };
 
