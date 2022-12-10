@@ -7,4 +7,6 @@ export const ACTIONS = {
   inProgressTodo: (todoId) => ({ type: ACTION_TYPES.inProgressTodo, todoId }),
   editTodo: (todoId, changes) => ({ type: ACTION_TYPES.editTodo, todo: { todoId, changes } }),
   deleteTodo: (todoId) => ({ type: ACTION_TYPES.deleteTodo, todoId }),
+  changeStatus: (status) => ({ type: ACTION_TYPES.changeStatus, status }),
+  changeSortOption: (option) => ({ type: ACTION_TYPES.changeSortOption, option }),
 };

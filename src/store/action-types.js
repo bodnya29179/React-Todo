@@ -5,4 +5,6 @@ export const ACTION_TYPES = Object.freeze({
   inProgressTodo: '[Todo] Move todo to in-progress',
   editTodo: '[Todo] Edit todo',
   deleteTodo: '[Todo] Delete todo',
+  changeSortOption: '[Todo] Change sort option',
+  changeStatus: '[Todo] Change status',
 });

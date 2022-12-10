@@ -10,8 +10,8 @@ import { selectTodos } from './store/selectors';
 function App() {
   const todos = useSelector(selectTodos);
 
-  const [status, setStatus] = useState('all');
-  const [sortOption, setSortOption] = useState('creationDate');
+  const [status] = useState('all');
+  const [sortOption] = useState('creationDate');
   const [displayedTodos, setDisplayedTodos] = useState([]);
 
   const dispatch = useDispatch();
@@ -21,11 +21,11 @@ function App() {
   }
 
   const handlerFiltering = (event) => {
-    setStatus(event.target.value);
+    dispatch(ACTIONS.changeStatus(event.target.value));
   };
 
   const handleSorting = (event) => {
-    setSortOption(event.target.value);
+    dispatch(ACTIONS.changeSortOption(event.target.value));
   };
 
   const handleTitleEditing = (todoId, title) => {

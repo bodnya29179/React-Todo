@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   todos: [],
+  selectedStatus: 'all',
+  selectedSortOption: 'creationDate',
 };
 
 function reducer(state = initialState, action) {
@@ -85,6 +87,14 @@ function reducer(state = initialState, action) {
       const todos = state.todos.filter((element) => element.id !== action.todoId);
 
       return { ...state, todos };
+    }
+
+    case ACTION_TYPES.changeStatus: {
+      return { ...state, selectedStatus: action.status };
+    }
+
+    case ACTION_TYPES.changeSortOption: {
+      return { ...state, selectedSortOption: action.option };
     }
 
     default: {
