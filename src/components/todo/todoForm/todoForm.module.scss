@@ -1,0 +1,27 @@
+.form {
+    &__todo {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    &__title {
+        text-align: center;
+        margin: 0;
+        font-size: 28px;
+    }
+
+    &__text {
+        padding: 16px;
+        border-radius: 10px;
+        background-color: #c8c8c8;
+        resize: none;
+    }
+
+    &__add {
+        padding: 6px;
+        border-radius: 10px;
+        background-color: antiquewhite;
+    }
+}

@@ -1,0 +1,18 @@
+.editable_field {
+    border-radius: 3px;
+    word-break: break-all;
+}
+
+.textarea {
+    resize: none;
+    width: 100% !important;
+}
+
+.displayed_text {
+    cursor: pointer;
+}
+
+.textarea,
+.editable_field:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+}

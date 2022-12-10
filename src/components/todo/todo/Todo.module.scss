@@ -1,0 +1,47 @@
+.todo {
+    &__container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__container_text {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 20px;
+        width: 100%;
+    }
+
+    &__label {
+        display: block;
+        font-weight: 900;
+        font-size: 14px;
+    }
+
+    &__container_button {
+        display: flex;
+        flex-direction: column;
+        gap: 8px ;
+    }
+
+    &__item_add,
+    &__item_progress,
+    &__item_edit,
+    &__item_delete {
+        padding: 4px;
+        font-size: 30px;
+    }
+
+    &__container_data {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__data {
+        font-size: 10px;
+        padding: 4px;
+        border: 1px solid #3147cc;
+        border-radius: 10px;
+    }
+}
+
