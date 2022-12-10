@@ -1,4 +1,5 @@
 import { ACTION_TYPES } from './action-types';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   todos: [],
@@ -7,7 +8,15 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case ACTION_TYPES.addTodo: {
-      const todos = [action.todo, ...state.todos];
+      const currentDate = Date.now();
+      const todo = {
+        id: uuidv4(),
+        ...action.todo,
+        status: 'open',
+        creationDate: currentDate,
+        updateDate: currentDate,
+      };
+      const todos = [todo, ...state.todos];
 
       return { ...state, todos };
     }
